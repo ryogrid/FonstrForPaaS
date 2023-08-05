@@ -2,10 +2,10 @@
   "name": "fonstr",
   "version": "0.0.8",
   "description": "fonstr",
-  "main": "index.js",
+  "main": "./bin/relay.js",
   "type": "module",
   "bin": {
-    "fonstr": "./index.js"
+    "fonstr": "./bin/relay.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
