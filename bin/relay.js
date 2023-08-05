@@ -1,23 +1,9 @@
-#!/usr/bin/env node
-
-import minimist from 'minimist'
 import { createServer } from '../index.js'
 
-const argv = minimist(process.argv.slice(2))
-const useHttps = argv.h || argv.https
+const useHttps = false
 
 console.log(argv)
 
-let port
-for (const arg of argv._) {
-  if (parseInt(arg)) {
-    port = parseInt(arg)
-    break
-  }
-}
-
-if (!port) {
-  port = 4444
-}
+const port = process.env.PORT || 3000;
 
 createServer({ port, useHttps })
