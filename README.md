@@ -1,7 +1,12 @@
+This repo is forked version of **[fonstr](https://github.com/nostrapps/fonstr)**  for deploying to PaaS environment and some enhancements.
+  
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
 - For using deployed service as relay server, please access the service via **wss** URI schema instead of **https**
+- This relay server may cause troubles to connected client (account) because implementation of this is very very simple
+- So,  I suggest you to use Nostr account which is created for testing and not to make this accecible to many and unspecified users
+  - Testing with your frends at most five is good :)
 
-**fonstr forked version for PaaS service hosting etc**
+
  
 
   
