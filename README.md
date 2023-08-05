@@ -1,7 +1,8 @@
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+- For using deployed service as relay server, please access the service via **wss** URI schema instead of **https**
 
 **fonstr forked version for PaaS service hosting etc**
-
+ 
 
   
 ----
