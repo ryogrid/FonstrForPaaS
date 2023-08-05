@@ -1,3 +1,12 @@
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+
+**fonstr forked version for PaaS service hosting etc**
+
+
+  
+----
+
+
 <div align="center">
   <h1>fonstr</h1>
 </div>
