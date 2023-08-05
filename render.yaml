@@ -4,3 +4,5 @@ services:
     env: node
     buildCommand: npm install
     startCommand: node .bin/relay.js
+    plan: free
+
