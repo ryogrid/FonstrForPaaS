@@ -1,21 +1,21 @@
 import { validateEvent, verifySignature } from 'nostr-tools'
 import fastify from 'fastify'
 import fastifyWebsocket from '@fastify/websocket'
-import { readFileSync } from 'fs'
+//import { readFileSync } from 'fs'
 
 function createServer ({ port, useHttps = false }) {
   const events = []
   const subscribers = new Map()
 
-  const httpsOptions = useHttps
-    ? {
-        key: readFileSync('privkey.pem'),
-        cert: readFileSync('fullchain.pem')
-      }
-    : undefined
+  // const httpsOptions = useHttps
+  //   ? {
+  //       key: readFileSync('privkey.pem'),
+  //       cert: readFileSync('fullchain.pem')
+  //     }
+  //   : undefined
 
   const fi = fastify({
-    https: httpsOptions,
+    //https: httpsOptions,
     http2: false
   })
 
@@ -70,6 +70,14 @@ export const eventPassesFilter = (event, filter) => {
   return true
 }
 
+export const removeOldKind2Events = (events, value) => {
+  const oldKind3RemovedEvents = events.filter(event => !(event.kind == 3 && event.pubkey === value.pubkey))
+  // clear events array
+  events.splice(0)
+  // fill old kind-3 data eliminated events
+  events.concat(oldKind3RemovedEvents)
+}
+
 export const processMessage = async (type, value, rest, socket, events, subscribers) => {
   switch (type) {
     case 'EVENT':
@@ -77,6 +85,9 @@ export const processMessage = async (type, value, rest, socket, events, subscrib
       const veryOk = verifySignature(value)
       console.log('ok', ok, veryOk)
       if (ok && veryOk) {
+        if (value.kind == 3) {
+          removeOldKind2Events(events, value)
+        }
         events.push(value)
         console.log('event ok')
         subscribers.forEach((filters, subscriber) => {
