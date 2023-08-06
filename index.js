@@ -34,8 +34,11 @@ function createServer ({ port, useHttps = false }) {
         const [type, value, ...rest] = JSON.parse(message)
         await processMessage(type, value, rest, socket, events, subscribers)
       })
-
       // ...
+    })
+    
+    fastify.get('/alive/', (request, reply) => {
+      reply.send('alive')
     })
   })
 
